@@ -1,33 +1,25 @@
 {
-  "name": "vue2-swiper",
-  "description": "Swiper component for Vue",
-  "version": "1.0.0",
+  "name": "vue2.7-swiper",
+  "description": "Swiper 12 component for Vue2",
+  "version": "1.0.2",
   "license": "MIT",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/surmon-china/vue-awesome-swiper"
+    "url": "https://github.com/canhlinh/vue2-swiper.git"
   },
-  "bugs": "https://github.com/surmon-china/vue-awesome-swiper/issues",
-  "homepage": "https://github.surmon.me/vue-awesome-swiper",
+  "bugs": "https://github.com/canhlinh/vue2-swiper/issues",
+  "homepage": "https://github.com/canhlinh/vue2-swiper",
   "author": {
     "name": "Surmon",
     "url": "https://github.com/surmon-china"
   },
-  "main": "dist/vue-awesome-swiper.js",
-  "module": "dist/vue-awesome-swiper.esm.js",
-  "browser": "dist/vue-awesome-swiper.js",
-  "jsdelivr": "dist/vue-awesome-swiper.js",
-  "unpkg": "dist/vue-awesome-swiper.js",
-  "jspm": {
-    "main": "dist/vue-awesome-swiper.esm.js",
-    "registry": "npm",
-    "format": "esm"
-  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "types": "dist/index.d.ts",
   "scripts": {
     "cleanup": "rm -rf ./dist/*",
   "build": "npm run cleanup && tsc",

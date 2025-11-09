@@ -9,7 +9,7 @@ import { DirectiveBinding } from 'vue/types/options'
 import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 // @ts-ignore - modules path provided in Swiper >=6
-import { Navigation, Pagination, Scrollbar, Parallax, Manipulation } from 'swiper/modules'
+import { Navigation, Pagination, Scrollbar, Parallax, Manipulation, Autoplay } from 'swiper/modules'
 import { DEFAULT_CLASSES, CoreNames, ComponentEvents, ComponentPropNames } from './constants'
 import { handleClickSlideEvent, bindSwiperEvents } from './event'
 import { kebabcase } from './utils'
@@ -92,6 +92,7 @@ export default function getDirective(SwiperClass: typeof Swiper, globalOptions?:
           if (opts.pagination) inferred.push(Pagination)
           if (opts.scrollbar) inferred.push(Scrollbar)
           if (opts.parallax) inferred.push(Parallax)
+          if (opts.autoplay) inferred.push(Autoplay)
           // Always include Manipulation for slide API support
           inferred.push(Manipulation)
           if (inferred.length) {

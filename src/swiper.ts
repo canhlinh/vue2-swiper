@@ -9,7 +9,7 @@ import Swiper from 'swiper'
 import type { SwiperOptions } from 'swiper/types'
 // Import commonly used modules (Swiper >= v6). Suppress type errors if legacy types still installed.
 // @ts-ignore
-import { Navigation, Pagination, Scrollbar, Parallax, Manipulation } from 'swiper/modules'
+import { Navigation, Pagination, Scrollbar, Parallax, Manipulation, Autoplay } from 'swiper/modules'
 import { DEFAULT_CLASSES, CoreNames, ComponentPropNames, ComponentEvents } from './constants'
 import { handleClickSlideEvent, bindSwiperEvents } from './event'
 
@@ -127,6 +127,7 @@ export default function getSwiperComponent(SwiperClass: typeof Swiper) {
           if (options.pagination) inferredModules.push(Pagination)
           if (options.scrollbar) inferredModules.push(Scrollbar)
           if ((options as any).parallax) inferredModules.push(Parallax)
+          if (options.autoplay) inferredModules.push(Autoplay)
           // Always include Manipulation for slide API support
           inferredModules.push(Manipulation)
           if (inferredModules.length) {
