@@ -49,7 +49,7 @@ import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 // import style
-import 'swiper/css/swiper.css'
+import 'swiper/css'
 
 Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 ```
@@ -58,7 +58,7 @@ Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 ```javascript
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-import 'swiper/css/swiper.css'
+import 'swiper/css'
 
 export default {
   components: {
@@ -74,7 +74,7 @@ export default {
 ### CDN
 
 ``` html
-<link rel="stylesheet" href="path/to/swiper.css"/>
+<link rel="stylesheet" href="path/to/swiper-bundle.css"/>
 <script type="text/javascript" src="path/to/swiper.js"></script>
 <script type="text/javascript" src="path/to/vue.min.js"></script>
 <script type="text/javascript" src="path/to/dist/vue-awesome-swiper.js"></script>
@@ -259,11 +259,13 @@ Swiper's API and configuration can be used.
 
 ```ts
 import Vue from 'vue'
-import { Swiper as SwiperClass, Pagination, Mousewheel, Autoplay } from 'swiper/js/swiper.esm'
+import SwiperClass, { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper'
+// Or, for explicit module imports:
+// import { Navigation, Pagination, Mousewheel, Autoplay } from 'swiper/modules'
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
 
 // Swiper modules
-SwiperClass.use([Pagination, Mousewheel, Autoplay])
+SwiperClass.use([Navigation, Pagination, Mousewheel, Autoplay])
 
 // -------------------------------------------------
 

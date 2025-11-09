@@ -5,7 +5,11 @@
  */
 
 import Vue, { PropType, VNode, CreateElement } from 'vue'
-import Swiper, { SwiperOptions } from 'swiper'
+import Swiper from 'swiper'
+import type { SwiperOptions } from 'swiper/types'
+// Import commonly used modules (Swiper >= v6). Suppress type errors if legacy types still installed.
+// @ts-ignore
+import { Navigation, Pagination, Scrollbar, Parallax, Manipulation } from 'swiper/modules'
 import { DEFAULT_CLASSES, CoreNames, ComponentPropNames, ComponentEvents } from './constants'
 import { handleClickSlideEvent, bindSwiperEvents } from './event'
 
@@ -115,9 +119,23 @@ export default function getSwiperComponent(SwiperClass: typeof Swiper) {
         }
       },
       initSwiper() {
+  const options: any = this.swiperOptions
+  // If user hasn't explicitly provided modules, infer them from option flags
+  if (!options.modules) {
+          const inferredModules: any[] = []
+          if (options.navigation) inferredModules.push(Navigation)
+          if (options.pagination) inferredModules.push(Pagination)
+          if (options.scrollbar) inferredModules.push(Scrollbar)
+          if ((options as any).parallax) inferredModules.push(Parallax)
+          // Always include Manipulation for slide API support
+          inferredModules.push(Manipulation)
+          if (inferredModules.length) {
+            ;(options as any).modules = inferredModules
+          }
+        }
         this.swiperInstance = new SwiperClass(
           this.$el as HTMLElement,
-          this.swiperOptions
+          options
         )
         bindSwiperEvents(
           this.swiperInstance,

@@ -12,14 +12,21 @@ describe('vue-awesome-swiper', () => {
 
   const testWithSwiper = (swiperWrapper: Wrapper<Vue>) => {
     const vm = swiperWrapper.vm as any
-    expect(swiperWrapper.name()).toBe(CoreNames.SwiperComponent)
+    // component name
+    expect(vm.$options.name).toBe(CoreNames.SwiperComponent)
+    // classes and visibility
     expect(swiperWrapper.classes()).toContain(DEFAULT_CLASSES.containerClass)
     expect(swiperWrapper.isVisible()).toBeTruthy()
-    expect(swiperWrapper.isVueInstance()).toBeTruthy()
-    expect(swiperWrapper.is('div')).toBeTruthy()
-    expect(swiperWrapper.contains('div')).toBeTruthy()
+    // instance presence
+    expect(!!swiperWrapper.vm).toBeTruthy()
+    // element tag
+    expect(swiperWrapper.element.tagName).toBe('DIV')
+    // contains child div
+    expect(swiperWrapper.find('div').exists()).toBe(true)
+    // instance API
     expect(vm.swiperInstance).toBeInstanceOf(SwiperClass)
     expect(typeof vm.updateSwiper).toBe('function')
+    // props
     expect(Object.keys(swiperWrapper.props())).toContain(ComponentPropNames.AutoUpdate)
     expect(Object.keys(swiperWrapper.props())).toContain(ComponentPropNames.CleanupStylesOnDestroy)
     expect(swiperWrapper.props()[ComponentPropNames.AutoUpdate]).toBeTruthy()

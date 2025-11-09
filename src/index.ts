@@ -4,6 +4,7 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
+// Swiper v12 provides tree-shakeable modules; default export remains main class
 import SwiperClass from 'swiper'
 import exporter from './exporter'
 

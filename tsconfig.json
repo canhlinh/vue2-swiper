@@ -12,6 +12,8 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationDir": "dist",
+    "outDir": "dist",
+    "rootDir": "src",
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
@@ -25,9 +27,11 @@
       "scripthost"
     ]
   },
+  "include": [
+    "src"
+  ],
   "exclude": [
     "node_modules",
-    "dist",
     "tests"
   ]
 }

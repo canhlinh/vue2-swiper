@@ -3,8 +3,7 @@
  * @module constants
  * @author Surmon <https://github.com/surmon-china>
  */
-
-import { CommonEvent } from 'swiper'
+// Note: Swiper v12 does not export a string union for event names; we keep events as string literals.
 
 export enum CoreNames {
   SwiperComponent = 'Swiper',
@@ -14,7 +13,9 @@ export enum CoreNames {
 }
 
 export const DEFAULT_CLASSES = Object.freeze({
-  containerClass: 'swiper-container',
+  // Swiper >=6 uses `swiper` as root class (previously `swiper-container` in v5)
+  // We switch to the new class for style compatibility with v12.
+  containerClass: 'swiper',
   wrapperClass: 'swiper-wrapper',
   slideClass: 'swiper-slide'
 })
@@ -33,7 +34,7 @@ export enum ComponentPropNames {
 }
 
 // https://swiperjs.com/api/#events
-export const SWIPER_EVENTS: CommonEvent[] = [
+export const SWIPER_EVENTS: string[] = [
   'init',
   'beforeDestroy',
   'slideChange',
@@ -61,7 +62,7 @@ export const SWIPER_EVENTS: CommonEvent[] = [
   'setTranslate',
   'setTransition',
   'resize',
-  'observerUpdate' as CommonEvent,
-  'beforeLoopFix' as CommonEvent,
-  'loopFix' as CommonEvent
+  'observerUpdate',
+  'beforeLoopFix',
+  'loopFix'
 ]

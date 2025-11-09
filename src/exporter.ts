@@ -4,7 +4,8 @@
  * @author Surmon <https://github.com/surmon-china>
  */
 
-import Swiper, { SwiperOptions } from 'swiper'
+import Swiper from 'swiper'
+import type { SwiperOptions } from 'swiper/types'
 import _Vue, { PluginFunction } from 'vue'
 import { CoreNames } from './constants'
 import getDirective from './directive'

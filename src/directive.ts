@@ -6,7 +6,10 @@
 
 import { DirectiveOptions, VNode } from 'vue'
 import { DirectiveBinding } from 'vue/types/options'
-import Swiper, { SwiperOptions } from 'swiper'
+import Swiper from 'swiper'
+import type { SwiperOptions } from 'swiper/types'
+// @ts-ignore - modules path provided in Swiper >=6
+import { Navigation, Pagination, Scrollbar, Parallax, Manipulation } from 'swiper/modules'
 import { DEFAULT_CLASSES, CoreNames, ComponentEvents, ComponentPropNames } from './constants'
 import { handleClickSlideEvent, bindSwiperEvents } from './event'
 import { kebabcase } from './utils'
@@ -82,7 +85,20 @@ export default function getDirective(SwiperClass: typeof Swiper, globalOptions?:
 
       // Swiper will destroy but not delete instance, when used <keep-alive>
       if (!swiper || (swiper as any).destroyed) {
-        swiper = new SwiperClass(element, swiperOptions)
+        const opts: any = swiperOptions || {}
+        if (!opts.modules) {
+          const inferred: any[] = []
+          if (opts.navigation) inferred.push(Navigation)
+          if (opts.pagination) inferred.push(Pagination)
+          if (opts.scrollbar) inferred.push(Scrollbar)
+          if (opts.parallax) inferred.push(Parallax)
+          // Always include Manipulation for slide API support
+          inferred.push(Manipulation)
+          if (inferred.length) {
+            opts.modules = inferred
+          }
+        }
+        swiper = new SwiperClass(element, opts)
         vueContext[instanceName] = swiper
         bindSwiperEvents(swiper, emitEvent)
         emitEvent(ComponentEvents.Ready, swiper)
